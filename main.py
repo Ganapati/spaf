@@ -19,11 +19,13 @@ if __name__ == "__main__":
     parser.add_argument('-l', '--logfile', action="store", dest="log_file", default=None, help='Log file to watch')
     args = parser.parse_args()
 
-    sps = static_scan.StaticPhpScanner(args.folder, args.recursive)
+    # Start entry points scan
     if args.output == "pretty":
         print "[*] Starting static scan"
+    sps = static_scan.StaticPhpScanner(args.folder, args.recursive)
     entry_points = sps.scan(args.output)
 
+    # display entry points
     if not args.fuzz:
         if args.output == "pretty":
             for url, vars in entry_points.items():
@@ -33,11 +35,14 @@ if __name__ == "__main__":
         elif args.output == "json":
             print entry_points
 
+    # Perform fuzzing
     if args.fuzz:
         fuzzer = fuzz.Fuzzer(args.url, args.log_file, args.cookies)
         if args.output == "pretty":
             print "[*] Starting fuzz"
         results = fuzzer.fuzz(args.folder, entry_points, args.nb_tests, args.output)
+
+        # Display a pretty graph
         if args.output == "pretty":
             for result in results:
                 for url, datas in result.items():

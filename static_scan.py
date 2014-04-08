@@ -9,7 +9,7 @@ import re
 class StaticPhpScanner:
 
     def __init__(self, folder=None, recursive=False):
-        """Constructor
+        """ Constructor
 
         """
         self.folder = folder
@@ -18,7 +18,7 @@ class StaticPhpScanner:
                          '\$_(?P<method>SERVER)\[(\'|")(?P<var>(HTTP_REFERER|HTTP_USER_AGENT))(\'|")\]']
 
     def searchFiles(self, folder, recursive):
-        """Search php files in folder
+        """ Search php files in folder
 
         """
         files = []
@@ -32,7 +32,7 @@ class StaticPhpScanner:
         return files
 
     def parsePages(self, files):
-        """Find entrypoint in files
+        """ Find entrypoint in files
 
         """
         result = {}
@@ -60,9 +60,8 @@ class StaticPhpScanner:
         return result
 
     def scan(self, output):
-        """Begin file scanning
+        """ Begin file scanning
 
         """
         files = self.searchFiles(self.folder, self.recursive)
         return self.parsePages(files)
-

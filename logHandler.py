@@ -6,6 +6,9 @@ import sys
 class LogHandler:
 
     def __init__(self, filename):
+        """ Constructor
+
+        """
         self.filename = filename
         self.last_line = self.get_last_lines(1)[0]
 
