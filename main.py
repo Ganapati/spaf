@@ -20,6 +20,8 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     sps = static_scan.StaticPhpScanner(args.folder, args.recursive)
+    if args.output == "pretty":
+        print "[*] Starting static scan"
     entry_points = sps.scan(args.output)
 
     if not args.fuzz:
@@ -33,6 +35,8 @@ if __name__ == "__main__":
 
     if args.fuzz:
         fuzzer = fuzz.Fuzzer(args.url, args.log_file, args.cookies)
+        if args.output == "pretty":
+            print "[*] Starting fuzz"
         results = fuzzer.fuzz(args.folder, entry_points, args.nb_tests, args.output)
         if args.output == "pretty":
             for result in results:

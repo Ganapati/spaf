@@ -63,23 +63,6 @@ class StaticPhpScanner:
         """Begin file scanning
 
         """
-        if output == "pretty":
-            print "[*] Start static scan"
         files = self.searchFiles(self.folder, self.recursive)
         return self.parsePages(files)
 
-if __name__ == "__main__":
-    """Test method
-
-    """
-    parser = argparse.ArgumentParser(description='Scan static php files for injection points')
-    parser.add_argument('-f', '--folder', action="store", dest="folder", required=True, help='Base folder')
-    parser.add_argument('-r', '--recursive', action="store_true", dest="recursive", default=False, help='Recursive file search')
-    args = parser.parse_args()
-
-    sps = StaticPhpScanner(args.folder, args.recursive)
-    result = sps.scan()
-    for page, vars in result.items():
-        print "[*] %s :" % page
-        for var in vars:
-            print " - line : %d > %s : %s" % (var['line'], var['method'], var['var'])

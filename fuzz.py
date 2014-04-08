@@ -66,8 +66,6 @@ class Fuzzer:
         """Perform fuzzing using known entry_points
 
         """
-        if output == "pretty":
-            print "[*] Start fuzzing"
         results = []
         current_test = 1
         for page, vars in entry_points.items():
