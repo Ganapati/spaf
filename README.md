@@ -6,10 +6,10 @@ Static Php Analysis and Fuzzer
 Description :
 ------------
 
-This tool WILL NOT sploit php scripts for you. It's a recon and helper tool for preparing pentest on local environment.
+This tool WILL NOT sploit any php scripts for you. It's a recon and helper tool for preparing pentest on local environment.
 
 The aim of this tool is to identify every entry points of scripts (user-controlled inputs).
-The fuzzer included send random printable data on each entry point, and then display every logs triggered.
+The included fuzzer send random printable data on each entry point, and then display every triggered logs.
 
 Input arguments :
 -----------------
