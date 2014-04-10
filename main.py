@@ -14,7 +14,7 @@ if __name__ == "__main__":
     parser.add_argument('-o', '--output', action="store", dest="output", default="pretty", help='Output type (pretty or json)')
     parser.add_argument('-c', '--cookies', action="store", dest="cookies", default=None, help='Cookies')
     parser.add_argument('-n', '--nbtests', action="store", default=1, dest="nb_tests", help='Nb test per entrypoint')
-    parser.add_argument('-u', '--url', action="store", dest="url", required=True, help='Url matching folder value')
+    parser.add_argument('-u', '--url', action="store", dest="url", help='Url matching folder value')
     parser.add_argument('-r', '--recursive', action="store_true", dest="recursive", default=False, help='Recursive file search')
     parser.add_argument('-l', '--logfile', action="store", dest="log_file", default=None, help='Log file to watch')
     args = parser.parse_args()
