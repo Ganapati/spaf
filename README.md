@@ -25,7 +25,7 @@ usage: main.py [-h] -d FOLDER [-f] [-o OUTPUT] [-c COOKIES] [-n NB_TESTS] -u
     - n NB_TESTS, --nbtests : Number of random string to send during the fuzzing
     - u URL, --url URL : Url matching folder value
     - r, --recursive : Recursive file search in folder
-    - l LOG_FILE, --logfile : If you want to display logs erros triggered by fuzzing, put your error.log full path here
+    - l LOG_FILE, --logfile : If you want to display logs errors triggered by fuzzing, put your error.log full path here
 
 Usage :
 -------
