@@ -43,7 +43,7 @@ class Fuzzer:
         results = {}
         value = self.getData(10)
         for req in vars:
-            if req['method'] not in data.key:
+            if req['method'] not in data.keys():
                 data[req['method'].lower()] = {}
             data[req['method'].lower()][req['var']] = value
         for method, var in data.items():
@@ -78,7 +78,7 @@ class Fuzzer:
             if self.log_handler is not None:
                 logs = self.log_handler.get_lines_until_last_check()
 
-            if url not in results.keys:
+            if url not in results.keys():
                 results[url] = []
 
             results[url].append({'method': method,
