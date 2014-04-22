@@ -3,6 +3,7 @@ import random
 import string
 import logHandler
 
+
 class Fuzzer:
     def __init__(self, url, log_handler=None, cookies=None):
         """ Save entrypoints informations
@@ -31,8 +32,7 @@ class Fuzzer:
         """ Generate random printable string for given length
 
         """
-        data  = ''.join(random.choice(string.printable) for _ in range(length))
-        return data
+        return ''.join(random.choice(string.printable) for _ in range(length))
 
     def sendData(self, url, vars):
         """ Send random string on given entrypoint
@@ -43,18 +43,30 @@ class Fuzzer:
         results = {}
         value = self.getData(10)
         for req in vars:
-            if not data.has_key(req['method'].lower()):
-                data[req['method'].lower()]={}
+            if req['method'] not in data.key:
+                data[req['method'].lower()] = {}
             data[req['method'].lower()][req['var']] = value
         for method, var in data.items():
             if method == "get":
-                r = requests.get(url, params=data[method], cookies=self.cookies, verify=False)
+                r = requests.get(url,
+                                 params=data[method],
+                                 cookies=self.cookies,
+                                 verify=False)
             elif method == "post":
-                r = requests.post(url, data=data[method], cookies=self.cookies, verify=False)
+                r = requests.post(url,
+                                  data=data[method],
+                                  cookies=self.cookies,
+                                  verify=False)
             elif method == "cookie":
-                r = requests.get(url, cookies=dict(data[method].items() + self.cookies.items()), verify=False)
+                cookies = dict(data[method].items() + self.cookies.items())
+                r = requests.get(url,
+                                 cookies=cookies,
+                                 verify=False)
             elif method == "server":
-                r = requests.get(url, headers=data[method], cookies=self.cookies, verify=False)
+                r = requests.get(url,
+                                 headers=data[method],
+                                 cookies=self.cookies,
+                                 verify=False)
             else:
                 pass
 
@@ -66,10 +78,13 @@ class Fuzzer:
             if self.log_handler is not None:
                 logs = self.log_handler.get_lines_until_last_check()
 
-            if not results.has_key(url):
+            if url not in results.keys:
                 results[url] = []
 
-            results[url].append({'method': method, 'data': var, 'response': r.status_code, 'informations': logs})
+            results[url].append({'method': method,
+                                 'data': var,
+                                 'response': r.status_code,
+                                 'informations': logs})
         return results
 
     def fuzz(self, base_path, entry_points, nb_tests, output):

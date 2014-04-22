@@ -2,9 +2,9 @@
 
 import fnmatch
 import os
-import argparse
 import glob
 import re
+
 
 class StaticPhpScanner:
 
@@ -49,12 +49,11 @@ class StaticPhpScanner:
                 for line in lines:
                     line_number = line_number + 1
                     for pattern in compiledPatterns:
-                        pattern_result = re.findall(pattern, line)
                         for m in pattern.finditer(line):
                             found = m.groupdict()
-                            result[file].append({'line' : line_number,
-                                                 'method' : found['method'],
-                                                 'var' : found['var']})
+                            result[file].append({'line': line_number,
+                                                 'method': found['method'],
+                                                 'var': found['var']})
             if len(result[file]) == 0:
                 result.pop(file, None)
         return result

@@ -1,7 +1,7 @@
 #!/usr/bin/python
 
 from mmap import mmap
-import sys
+
 
 class LogHandler:
 
@@ -42,7 +42,7 @@ class LogHandler:
 
         """
         lines = []
-        with open(self.filename, 'r+') as infile: 
+        with open(self.filename, 'r+') as infile:
             for line in self._reverse_file(infile):
                 if pattern in line:
                     break
